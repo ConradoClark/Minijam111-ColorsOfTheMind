@@ -10,6 +10,8 @@ using UnityEngine;
 
 public class BulletContact : EffectPoolable
 {
+    public int BulletDamage;
+    public Color BulletColor;
     public ScriptPrefab SplatterEffect;
     public ScriptPrefab PaintEffect;
     public LichtPhysicsObject PhysicsObject;
@@ -23,6 +25,7 @@ public class BulletContact : EffectPoolable
     protected override void OnAwake()
     {
         base.OnAwake();
+        PhysicsObject.AddCustomObject(this);
         _paintPool = SceneObject<PaintPoolManager>.Instance().GetEffect(PaintEffect);
         _physics = this.GetLichtPhysics();
     }

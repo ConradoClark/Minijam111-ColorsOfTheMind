@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -972327683, guid: 294b4f80d9fdb094f8751ab2c17e4336, type: 3}
-  m_Name: BulletPool
+  m_Name: ImpactPool
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4551940629233049831, guid: fd48833d06d9d3d44966dafead260d29, type: 3}
+  Prefab: {fileID: 4270486196098547271, guid: bc4f9cf92668dfd448874a8eabba9121, type: 3}
   DefaultPoolSize: 100
-  Type: 0
+  Type: 1
