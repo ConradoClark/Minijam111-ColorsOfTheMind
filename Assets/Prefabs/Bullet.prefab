@@ -154,7 +154,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   LayerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 265
   CheckNormals: 0
   NormalTarget: {x: 0, y: 0}
   IncreaseBySpeed: 0

@@ -35,10 +35,12 @@ public class Enemy : EffectPoolable
     {
         _currentHitPoints = HitPoints;
         HitDetector.OnHit += HitDetector_OnHit;
+        HitDetector.PhysicsObject.AddCustomObject(this);
     }
 
     private void OnDisable()
     {
         HitDetector.OnHit -= HitDetector_OnHit;
+        HitDetector.PhysicsObject.RemoveCustomObject<Enemy>();
     }
 }

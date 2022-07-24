@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Licht.Impl.Orchestration;
+using Licht.Unity.Objects;
+using Licht.Unity.Physics;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : BaseGameObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public LichtPhysicsObject PhysicsObject;
+    private void OnEnable()
     {
-        
+        PhysicsObject.enabled = false;
+        DefaultMachinery.AddBasicMachine(EnablePhysicsObject());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerable<IEnumerable<Action>> EnablePhysicsObject()
     {
-        
+        yield return TimeYields.WaitSeconds(GameTimer, 2);
+        PhysicsObject.enabled = true;
     }
 }

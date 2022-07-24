@@ -51,9 +51,7 @@ public class BulletHitDetector : BaseGameObject
             if (!default(CollisionResult).Equals(trigger))
             {
                 OnHit?.Invoke(bullet);
-                Debug.Log("Hit detected!");
                 yield return TimeYields.WaitMilliseconds(GameTimer, HitCooldownInMs);
-                // Hit detected!
             }
 
             yield return TimeYields.WaitOneFrameX;

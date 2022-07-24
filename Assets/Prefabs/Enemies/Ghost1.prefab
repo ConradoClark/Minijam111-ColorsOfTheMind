@@ -19,13 +19,13 @@ GameObject:
   - component: {fileID: 7451153749595917948}
   - component: {fileID: 7451153749595917951}
   - component: {fileID: 6117865446790389550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7451153749595917926
 Transform:
   m_ObjectHideFlags: 0
