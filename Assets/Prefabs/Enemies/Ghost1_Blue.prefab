@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7451153749595917951}
   - component: {fileID: 6117865446790389550}
   m_Layer: 8
-  m_Name: Ghost1
+  m_Name: Ghost1_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22870a438b0aec24da32d1645b9a0024, type: 2}
+  - {fileID: 2100000, guid: 2949f12ce6d52444fb62a568e0994254, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878db4c6bb3796747980bd4ba34bddb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasColorRestriction: 0
-  HitByColor: {r: 0, g: 0, b: 0, a: 0}
+  HasColorRestriction: 1
+  HitByColor: {r: 0.52156866, g: 0.81960785, b: 0.53333336, a: 1}
   HitCooldownInMs: 10
   CollisionDetector: {fileID: 7451153749595917923}
   PhysicsObject: {fileID: 7451153749595917920}

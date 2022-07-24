@@ -11,6 +11,8 @@ using UnityEngine;
 
 public class BulletHitDetector : BaseGameObject
 {
+    public bool HasColorRestriction;
+    public Color HitByColor;
     public float HitCooldownInMs;
     public LichtPhysicsCollisionDetector CollisionDetector;
     public LichtPhysicsObject PhysicsObject;
@@ -48,7 +50,7 @@ public class BulletHitDetector : BaseGameObject
                                                                              t.Collider, out var target) &&
                                                                          target.TryGetCustomObject(out bullet));
 
-            if (!default(CollisionResult).Equals(trigger))
+            if (!default(CollisionResult).Equals(trigger) && (!HasColorRestriction || HitByColor == bullet.BulletColor))
             {
                 OnHit?.Invoke(bullet);
                 yield return TimeYields.WaitMilliseconds(GameTimer, HitCooldownInMs);

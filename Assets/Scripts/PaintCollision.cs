@@ -22,6 +22,8 @@ public class PaintCollision : EffectPoolable
     public ScriptPrefab LightweightPaint;
     private LightweightPaintPool _lightweightPaintPool;
 
+    private float _elapsedTime;
+
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -31,8 +33,16 @@ public class PaintCollision : EffectPoolable
 
     private void OnEnable()
     {
+        _elapsedTime = 0;
         DefaultMachinery.AddBasicMachine(WatchCollision());
     }
+
+    private void Update()
+    {
+        _elapsedTime += (float) GameTimer.UpdatedTimeInMilliseconds;
+        if (_elapsedTime > 30000) EndEffect();
+    }
+
     private IEnumerable<IEnumerable<Action>> WatchCollision()
     {
         while (isActiveAndEnabled)
