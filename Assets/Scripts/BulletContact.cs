@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class BulletContact : EffectPoolable
 {
+    public bool IsSubSpawn { get; set; }
     public int BulletDamage;
     public Color BulletColor;
     public Material PaintMaterial;
@@ -20,15 +21,15 @@ public class BulletContact : EffectPoolable
     public ScriptIdentifier Gravity;
     public Vector2 InitialSpeed;
     public Vector2 BulletSpeed;
-    private PaintPool _paintPool;
-    private LichtPhysics _physics;
+    protected PaintPool PaintPool;
+    protected LichtPhysics Physics;
 
     protected override void OnAwake()
     {
         base.OnAwake();
         PhysicsObject.AddCustomObject(this);
-        _paintPool = SceneObject<PaintPoolManager>.Instance().GetEffect(PaintEffect);
-        _physics = this.GetLichtPhysics();
+        PaintPool = SceneObject<PaintPoolManager>.Instance().GetEffect(PaintEffect);
+        Physics = this.GetLichtPhysics();
     }
 
     protected virtual IEnumerable<IEnumerable<Action>> Move()
@@ -48,9 +49,9 @@ public class BulletContact : EffectPoolable
     protected virtual IEnumerable<IEnumerable<Action>> HandleContact()
     {
         // resets gravity accel for object
-        _physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
+        Physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
         yield return TimeYields.WaitOneFrameX;
-        _physics.UnblockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
+        Physics.UnblockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
 
         while (isActiveAndEnabled)
         {
@@ -61,7 +62,7 @@ public class BulletContact : EffectPoolable
                     splatter.Component.transform.position = transform.position;
                 }
 
-                if (_paintPool.TryGetManyFromPool(5, out var paints))
+                if (PaintPool.TryGetManyFromPool(5, out var paints))
                 {
                     for (var index = 0; index < paints.Length; index++)
                     {

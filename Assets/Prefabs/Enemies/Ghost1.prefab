@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveOnInitialization: 0
-  HitPoints: 10
+  HitPoints: 20
   KillEffect: {fileID: 11400000, guid: bc8e5097346903a4098bdb149ba22798, type: 2}
   HitDetector: {fileID: 7451153749595917949}
 --- !u!114 &6117865446790389550

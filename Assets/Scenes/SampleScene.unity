@@ -4675,7 +4675,7 @@ MonoBehaviour:
     Name: Peace
     Color: {r: 0.27058825, g: 0.5882353, b: 0.6313726, a: 1}
   - CooldownInMs: 150
-    BulletPrefab: {fileID: 11400000, guid: 355276ac55b482247b8cc8126d711a76, type: 2}
+    BulletPrefab: {fileID: 11400000, guid: c37bc41098629b8438f4e9b359e9f5b2, type: 2}
     Name: Focus
     Color: {r: 0.7647059, g: 0.3372549, b: 0.3137255, a: 1}
   WeaponSwitchCooldownInMs: 100
@@ -8210,6 +8210,8 @@ MonoBehaviour:
   PreloadEffects:
   - {fileID: 11400000, guid: 355276ac55b482247b8cc8126d711a76, type: 2}
   - {fileID: 11400000, guid: 576c0c89588722142b168a014800139d, type: 2}
+  - {fileID: 11400000, guid: c37bc41098629b8438f4e9b359e9f5b2, type: 2}
+  - {fileID: 11400000, guid: b5511f005ffab3649866e0c1a8a9a5d3, type: 2}
   Name: Bullet
 --- !u!1 &2051990441
 GameObject:
