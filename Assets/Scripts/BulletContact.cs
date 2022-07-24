@@ -12,6 +12,7 @@ public class BulletContact : EffectPoolable
 {
     public int BulletDamage;
     public Color BulletColor;
+    public Material PaintMaterial;
     public ScriptPrefab SplatterEffect;
     public ScriptPrefab PaintEffect;
     public LichtPhysicsObject PhysicsObject;
@@ -30,7 +31,7 @@ public class BulletContact : EffectPoolable
         _physics = this.GetLichtPhysics();
     }
 
-    private IEnumerable<IEnumerable<Action>> Move()
+    protected virtual IEnumerable<IEnumerable<Action>> Move()
     {
         yield return TimeYields.WaitOneFrameX;
         if (InitialSpeed.magnitude == 0) yield break;
@@ -44,7 +45,7 @@ public class BulletContact : EffectPoolable
             .Build();
     }
 
-    private IEnumerable<IEnumerable<Action>> HandleContact()
+    protected virtual IEnumerable<IEnumerable<Action>> HandleContact()
     {
         // resets gravity accel for object
         _physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
@@ -68,6 +69,8 @@ public class BulletContact : EffectPoolable
                         paint.Component.transform.position =
                             transform.position;
 
+                        paint.SpriteRenderer.material = PaintMaterial;
+
                         paint.InitialSpeed = new Vector2(0,0.2f) + DegreeToVector2(index * (360f / paints.Length)) * 0.25f;
                     }
                 }
@@ -87,7 +90,7 @@ public class BulletContact : EffectPoolable
 
     public static Vector2 RadianToVector2(float radian)
     {
-        return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
+        return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));   
     }
 
     public static Vector2 DegreeToVector2(float degree)

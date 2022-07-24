@@ -17,6 +17,7 @@ public class PaintCollision : EffectPoolable
     public Collider2D Collider;
     private Collider2D[] _results;
     public Vector2 InitialSpeed;
+    public SpriteRenderer SpriteRenderer;
 
     public ScriptPrefab LightweightPaint;
     private LightweightPaintPool _lightweightPaintPool;
@@ -67,6 +68,7 @@ public class PaintCollision : EffectPoolable
                 var offset = new Vector2(hDir, vDir) * 0.01f;
                 latestOffset += offset;
                 paint.transform.position = transform.position + (Vector3) latestOffset;
+                paint.SpriteRenderer.material = SpriteRenderer.material;
             }
             yield return TimeYields.WaitMilliseconds(GameTimer, 150);
         }

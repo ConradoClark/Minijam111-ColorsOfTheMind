@@ -162,4 +162,5 @@ MonoBehaviour:
     maxNormalAngle: 0
   Collider: {fileID: 868427883825097516}
   InitialSpeed: {x: 0, y: 0}
+  SpriteRenderer: {fileID: 868427883825097512}
   LightweightPaint: {fileID: 11400000, guid: b916901ae99893344b3cd77f2a65fa8d, type: 2}

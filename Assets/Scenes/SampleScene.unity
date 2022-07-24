@@ -3094,7 +3094,7 @@ GameObject:
   - component: {fileID: 650796322}
   - component: {fileID: 650796323}
   m_Layer: 5
-  m_Name: UI_Weapon_Discipline
+  m_Name: UI_Weapon_Focus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4663,9 +4663,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MousePosInput: {fileID: 11400000, guid: abaf8d7bf1f3838458a8b8a3b8c00b99, type: 2}
   MouseClickInput: {fileID: 11400000, guid: 7d90a4c9dd3762c4bbd8dc1d6fd3b480, type: 2}
+  ChangeWeaponInput: {fileID: 11400000, guid: 242e8f40c3cf7904da3d8a7142d06489, type: 2}
   CharacterPhysicsObject: {fileID: 1772120344}
-  Test: {fileID: 11400000, guid: 355276ac55b482247b8cc8126d711a76, type: 2}
-  WeaponCooldownInMs: 100
+  Weapons:
+  - CooldownInMs: 200
+    BulletPrefab: {fileID: 11400000, guid: 355276ac55b482247b8cc8126d711a76, type: 2}
+    Name: Hope
+    Color: {r: 0.52156866, g: 0.81960785, b: 0.53333336, a: 1}
+  - CooldownInMs: 400
+    BulletPrefab: {fileID: 11400000, guid: 576c0c89588722142b168a014800139d, type: 2}
+    Name: Peace
+    Color: {r: 0.27058825, g: 0.5882353, b: 0.6313726, a: 1}
+  - CooldownInMs: 150
+    BulletPrefab: {fileID: 11400000, guid: 355276ac55b482247b8cc8126d711a76, type: 2}
+    Name: Focus
+    Color: {r: 0.7647059, g: 0.3372549, b: 0.3137255, a: 1}
+  WeaponSwitchCooldownInMs: 100
 --- !u!95 &1089076593
 Animator:
   serializedVersion: 4
@@ -7064,6 +7077,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1758764409}
+  - component: {fileID: 1758764410}
   m_Layer: 5
   m_Name: Weapons
   m_TagString: Untagged
@@ -7091,6 +7105,22 @@ Transform:
   m_Father: {fileID: 1810816988}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1758764410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758764408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724b505e04edb314fbf512db9664eff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HopeUI: {fileID: 1156150278}
+  PeaceUI: {fileID: 1945509162}
+  FocusUI: {fileID: 650796322}
+  WeaponName: {fileID: 948500757}
 --- !u!1 &1765845442
 GameObject:
   m_ObjectHideFlags: 0
@@ -7225,7 +7255,7 @@ MonoBehaviour:
   CeilingTrigger: {fileID: 11400000, guid: 761f8844e193ed746b678feb34a89770, type: 2}
   GravityIdentifier: {fileID: 11400000, guid: c2666471d97b1a141bb99f541792cff4, type: 2}
   JumpInput: {fileID: 11400000, guid: 8fb23c51a7c144640ac44197e2077172, type: 2}
-  JumpSpeed: 2.1
+  JumpSpeed: 2.2
   AccelerationTime: 0
   DecelerationTime: 0.4
   MovementStartEasing: 0
@@ -7856,7 +7886,7 @@ GameObject:
   - component: {fileID: 1945509162}
   - component: {fileID: 1945509163}
   m_Layer: 5
-  m_Name: UI_Weapon_Focus
+  m_Name: UI_Weapon_Peace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8179,6 +8209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreloadEffects:
   - {fileID: 11400000, guid: 355276ac55b482247b8cc8126d711a76, type: 2}
+  - {fileID: 11400000, guid: 576c0c89588722142b168a014800139d, type: 2}
   Name: Bullet
 --- !u!1 &2051990441
 GameObject:
