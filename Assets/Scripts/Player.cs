@@ -17,7 +17,7 @@ public class Player : BaseGameObject
 
     private IEnumerable<IEnumerable<Action>> EnablePhysicsObject()
     {
-        yield return TimeYields.WaitSeconds(GameTimer, 2);
+        yield return TimeYields.WaitSeconds(GameTimer, 1.5);
         PhysicsObject.enabled = true;
     }
 }

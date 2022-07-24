@@ -2210,8 +2210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7850edde6d4154b98882634a9ac040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Scene: 
   HoverColorize: {r: 0.52156866, g: 0.81960785, b: 0.53333336, a: 0.39607844}
   ButtonSprite: {fileID: 722943663}
+  TextComponent: {fileID: 1245863946}
 --- !u!1 &741373310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +2977,7 @@ GameObject:
   - component: {fileID: 1156677964}
   - component: {fileID: 1156677965}
   - component: {fileID: 1156677966}
+  - component: {fileID: 1156677967}
   m_Layer: 5
   m_Name: BackToMenuButton
   m_TagString: Untagged
@@ -3076,6 +3079,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.87907594, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &1156677967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156677963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7850edde6d4154b98882634a9ac040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scene: Scenes/MainMenu
+  HoverColorize: {r: 0.7607844, g: 0.3372549, b: 0.3137255, a: 0.39607844}
+  ButtonSprite: {fileID: 1156677965}
+  TextComponent: {fileID: 40713869}
 --- !u!1 &1163861873
 GameObject:
   m_ObjectHideFlags: 0

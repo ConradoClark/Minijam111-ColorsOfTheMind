@@ -26,11 +26,13 @@ public class SongAudioSource : BaseUIObject
             .Build();
 
         AudioSource.clip = clip;
+
+        yield return TimeYields.WaitSeconds(UITimer, 0.5f);
         AudioSource.Play();
 
         yield return new LerpBuilder(f => AudioSource.volume = f, () => AudioSource.volume)
             .SetTarget(1)
-            .Over(0.25f)
+            .Over(0.15f)
             .UsingTimer(UITimer)
             .Build();
     }

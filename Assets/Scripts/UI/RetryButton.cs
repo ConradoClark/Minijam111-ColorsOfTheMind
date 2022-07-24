@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Mixins;
 using Licht.Unity.Objects;
+using TMPro;
 using UnityEngine;
 
 public class RetryButton : BaseUIObject
 {
+    public string Scene;
     public Color HoverColorize;
     public SpriteRenderer ButtonSprite;
     private ClickableObjectMixin _clickable;
     private Finalizer _finalizer;
     private Color _originalColorize;
+    public TMP_Text TextComponent;
 
     protected override void OnAwake()
     {
@@ -43,7 +46,11 @@ public class RetryButton : BaseUIObject
         {
             if (_clickable.WasClickedThisFrame())
             {
-                _finalizer.LoadScene(); // reloads same scene
+                if (TextComponent != null)
+                {
+                    TextComponent.text = "Loading...";
+                }
+                _finalizer.LoadScene(string.IsNullOrWhiteSpace(Scene) ? null : Scene); // reloads same scene
                 break;
             }
             yield return TimeYields.WaitOneFrameX;
