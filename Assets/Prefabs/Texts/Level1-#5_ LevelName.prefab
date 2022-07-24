@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3012334074950963792}
   - component: {fileID: 3012334074950963794}
   - component: {fileID: 3012334074950963805}
+  - component: {fileID: 6081741631321996918}
   m_Layer: 5
   m_Name: Level1-#5_ LevelName
   m_TagString: Untagged
@@ -33,7 +34,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -102,7 +103,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ep. 1 - Hopelessness
+  m_text: 'Ep. 1 - <color=#4596a1>Hopelessness</color>
+
+    <size=1>Bleak, hiding
+    in the night - lies the future, far from sight.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 63284326e6ca35647894a11f177bf727, type: 2}
   m_sharedMaterial: {fileID: -6826038867691860091, guid: 63284326e6ca35647894a11f177bf727, type: 2}
@@ -204,3 +208,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextComponent: {fileID: 3012334074950963792}
   DurationPoolable: {fileID: 3012334074950963794}
+--- !u!114 &6081741631321996918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012334074950963798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093b5960042d18043848ae1b4c40a8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clip: {fileID: 8300000, guid: d2548c904a7365646ad67203f97eff00, type: 3}
