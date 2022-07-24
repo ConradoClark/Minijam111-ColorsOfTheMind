@@ -26,6 +26,7 @@ public class StepFade : BaseGameObject
             .SetTarget(0f)
             .WithStep(Step)
             .Over(DurationInSeconds)
+            .BreakIf(() => !enabled)
             .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
             .UsingTimer(GameTimer)
             .Build();

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7451153749595917922}
   - component: {fileID: 7451153749595917948}
   - component: {fileID: 7451153749595917951}
+  - component: {fileID: 6117865446790389550}
   m_Layer: 0
   m_Name: Ghost1
   m_TagString: Untagged
@@ -247,3 +248,17 @@ MonoBehaviour:
   HitPoints: 10
   KillEffect: {fileID: 11400000, guid: bc8e5097346903a4098bdb149ba22798, type: 2}
   HitDetector: {fileID: 7451153749595917949}
+--- !u!114 &6117865446790389550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451153749595917925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e057dc29b1568478bce1254c9ad478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhysicsObject: {fileID: 7451153749595917920}
+  SpriteRenderer: {fileID: 7451153749595917927}
