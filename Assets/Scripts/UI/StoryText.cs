@@ -15,6 +15,8 @@ public class StoryText : BaseUIObject
     public AudioSource TextSound;
     public float CharactersFrequencyInMs;
 
+    public AudioSource NoNoSound;
+
     private Color _originalColor;
     public Color DangerColor;
 
@@ -59,6 +61,9 @@ public class StoryText : BaseUIObject
         yield return TimeYields.WaitSeconds(UITimer, 3, breakCondition: () => _clickDetection.WasClickedThisFrame(out _));
 
         TextComponent.color = DangerColor;
+
+        NoNoSound.PlayDelayed(0.25f);
+
         yield return ShowSentence("SELF-SABOTAGING").AsCoroutine();
         yield return TimeYields.WaitSeconds(UITimer, 4, breakCondition: () => _clickDetection.WasClickedThisFrame(out _));
 

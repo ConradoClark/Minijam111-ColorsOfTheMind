@@ -15,6 +15,7 @@ public class CharacterGettingHit : BaseGameObject
     public LichtPhysicsObject PhysicsObject;
     public ScriptIdentifier HitTrigger;
     public float HitCooldownInSeconds;
+    public AudioSource AudioSource;
 
     private bool _enabled;
 
@@ -36,6 +37,7 @@ public class CharacterGettingHit : BaseGameObject
         {
             if (PhysicsObject.GetPhysicsTrigger(HitTrigger))
             {
+                AudioSource.Play();
                 CurrentHitPoints--;
                 OnHit?.Invoke();
                 yield return TimeYields.WaitSeconds(GameTimer, HitCooldownInSeconds);

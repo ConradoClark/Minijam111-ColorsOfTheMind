@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Objects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CharacterSmokeOnWalk : BaseGameObject
 {
     public Vector3 Offset;
     public ScriptPrefab SmokeEffect;
     public ScriptBasicMachinery LateUpdate;
+    public AudioSource StepSound;
+
     public void CreateSmoke()
     {
         LateUpdate.Machinery.AddBasicMachine(SpawnSmokeOnLateUpdate());

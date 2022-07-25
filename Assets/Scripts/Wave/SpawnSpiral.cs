@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
@@ -12,8 +11,13 @@ public class SpawnSpiral : EffectPoolable
 {
     public float DurationInSeconds;
     public ScriptPrefab SpawnParticle;
+    public AudioSource AudioSource;
     private void OnEnable()
     {
+        AudioSource.pitch = 0.9f + Random.value * 0.2f;
+        AudioSource.panStereo = transform.position.x < 0 ? -1 : 1;
+        AudioSource.PlayDelayed(Random.value * 0.75f);
+
         transform.localScale = Vector3.one;
         DefaultMachinery.AddBasicMachine(SpawnParticles());
         DefaultMachinery.AddBasicMachine(HandleTimer());

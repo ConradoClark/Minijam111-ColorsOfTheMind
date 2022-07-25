@@ -12,11 +12,13 @@ public class Death : BaseGameObject
     public LayerMask DeathLayerMask;
     private CharacterGettingHit _hit;
     private DeathScreen _deathScreen;
+    private VictoryScreen _victoryScreen;
     protected override void OnAwake()
     {
         base.OnAwake();
         _hit = SceneObject<CharacterGettingHit>.Instance();
         _deathScreen = SceneObject<DeathScreen>.Instance(true);
+        _victoryScreen = SceneObject<VictoryScreen>.Instance(true);
     }
 
     private void OnEnable()
@@ -47,5 +49,20 @@ public class Death : BaseGameObject
             .Build();
 
         _deathScreen.Activate();
+    }
+
+    public IEnumerable<IEnumerable<Action>> Win()
+    {
+        _hit.PhysicsObject.enabled = false;
+        Camera.main.cullingMask = DeathLayerMask;
+
+        yield return _hit.transform.GetAccessor()
+            .Position
+            .ToPosition(Vector3.zero)
+            .Over(2f)
+            .UsingTimer(GameTimer)
+            .Build();
+
+        _victoryScreen.Activate();
     }
 }

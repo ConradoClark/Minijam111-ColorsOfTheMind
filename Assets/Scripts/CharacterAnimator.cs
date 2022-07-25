@@ -7,6 +7,7 @@ using Licht.Unity.CharacterControllers;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CharacterAnimator : BaseGameObject
 {
@@ -16,6 +17,10 @@ public class CharacterAnimator : BaseGameObject
     public ScriptIdentifier Grounded;
     public LichtPhysicsObject PhysicsObject;
     private bool _hasJumpedRecently;
+
+    public AudioSource JumpSound;
+    public AudioSource StepSound;
+
     private void OnEnable()
     {
         this.ObserveEvent<LichtPlatformerMoveController.LichtPlatformerMoveEvents, LichtPlatformerMoveController.LichtPlatformerMoveEventArgs>( LichtPlatformerMoveController.LichtPlatformerMoveEvents.OnStartMoving, OnStartMoving);
@@ -27,6 +32,11 @@ public class CharacterAnimator : BaseGameObject
 
     private void OnJumpStart(LichtPlatformerJumpController.LichtPlatformerJumpEventArgs obj)
     {
+        if (JumpSound != null)
+        {
+            JumpSound.pitch = 0.95f + Random.value * 0.15f;
+            JumpSound.Play();
+        }
         Animator.SetBool("IsJumping", true);
         _hasJumpedRecently = true;
         DefaultMachinery.AddBasicMachine(HandleJumpDelay());
@@ -34,7 +44,7 @@ public class CharacterAnimator : BaseGameObject
 
     private IEnumerable<IEnumerable<Action>> HandleJumpDelay()
     {
-        yield return TimeYields.WaitMilliseconds(GameTimer, 20);
+        yield return TimeYields.WaitMilliseconds(GameTimer, 100);
         _hasJumpedRecently = false;
     }
 
@@ -63,6 +73,12 @@ public class CharacterAnimator : BaseGameObject
             {
                 Animator.SetBool("IsJumping",false);
                 Animator.SetBool("IsFalling", false);
+
+                if (StepSound != null)
+                {
+                    StepSound.pitch = 0.95f + Random.value * 0.05f;
+                    StepSound.Play();
+                }
             }
 
             yield return TimeYields.WaitOneFrameX;

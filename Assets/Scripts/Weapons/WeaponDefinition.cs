@@ -9,4 +9,5 @@ public struct WeaponDefinition
     public ScriptPrefab BulletPrefab;
     public string Name;
     public Color Color;
+    public AudioClip AudioClip;
 }

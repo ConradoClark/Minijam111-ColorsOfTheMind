@@ -15,6 +15,16 @@ public class Player : BaseGameObject
         DefaultMachinery.AddBasicMachine(EnablePhysicsObject());
     }
 
+
+    private void Update()
+    {
+        // physics fail-safe
+        if (Vector2.Distance(transform.position, Camera.main.transform.position) > 3f)
+        {
+            transform.position = new Vector3(-0.0271565467f, -0.255657285f, 0);
+        }
+    }
+
     private IEnumerable<IEnumerable<Action>> EnablePhysicsObject()
     {
         yield return TimeYields.WaitSeconds(GameTimer, 1.5);

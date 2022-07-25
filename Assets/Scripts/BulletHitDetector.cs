@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Enemies;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BulletHitDetector : BaseGameObject
 {
@@ -22,10 +24,13 @@ public class BulletHitDetector : BaseGameObject
 
     public event Action<BulletContact> OnHit;
 
+    private EnemyHitSoundEffect _enemyHitSoundEffect;
+
     protected override void OnAwake()
     {
         base.OnAwake();
         _physics = this.GetLichtPhysics();
+        _enemyHitSoundEffect = SceneObject<EnemyHitSoundEffect>.Instance();
     }
 
     private void OnEnable()
@@ -52,6 +57,8 @@ public class BulletHitDetector : BaseGameObject
 
             if (!default(CollisionResult).Equals(trigger) && (!HasColorRestriction || HitByColor == bullet.BulletColor))
             {
+                _enemyHitSoundEffect.AudioSource.pitch = 0.9f + Random.value * 0.2f;
+                _enemyHitSoundEffect.AudioSource.Play();
                 OnHit?.Invoke(bullet);
                 yield return TimeYields.WaitMilliseconds(GameTimer, HitCooldownInMs);
             }

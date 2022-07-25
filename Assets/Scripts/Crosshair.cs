@@ -7,6 +7,7 @@ using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class Crosshair : BaseGameObject
 {
@@ -20,6 +21,7 @@ public class Crosshair : BaseGameObject
     public float WeaponSwitchCooldownInMs;
 
     public event Action<WeaponDefinition> OnWeaponSwitch;
+    public AudioSource AudioSource;
 
     public float DirectionRelativeToCharacter => transform.position.x >= CharacterPhysicsObject.transform.position.x ? 1 : -1;
     private ClickDetectionMixin _clickDetection;
@@ -67,6 +69,12 @@ public class Crosshair : BaseGameObject
         {
             if (_clickDetection.IsPressed(out var pos)&& _bulletPool[CurrentWeapon].TryGetFromPool(out var bullet))
             {
+                if (AudioSource != null && CurrentWeapon.AudioClip != null)
+                {
+                    AudioSource.pitch = 0.95f + Random.value * 0.1f;
+                    AudioSource.PlayOneShot(CurrentWeapon.AudioClip);
+                }
+
                 bullet.Component.transform.position = new Vector3(_testChar.transform.position.x, _testChar.transform.position.y, 0);
                 bullet.InitialSpeed = ((Vector2)(pos - _testChar.transform.position)).normalized;
 

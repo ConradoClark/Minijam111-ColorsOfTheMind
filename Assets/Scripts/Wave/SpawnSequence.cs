@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Objects;
-using UnityEngine;
 
 public class SpawnSequence : BaseGameObject
 {
     public SpawnParams[] Waves;
     private bool _enabled;
+    private Death _death;
+    private SongAudioSource _songAudioSource;
+
+    protected override void OnAwake()
+    {
+        base.OnAwake();
+        _death = SceneObject<Death>.Instance();
+        _songAudioSource = SceneObject<SongAudioSource>.Instance();
+    }
 
     private void OnEnable()
     {
@@ -48,7 +54,10 @@ public class SpawnSequence : BaseGameObject
                 wave++;
             }
 
-            // break for now;
+            yield return TimeYields.WaitSeconds(GameTimer, 2);
+
+            _songAudioSource.AudioSource.Stop();
+            yield return _death.Win().AsCoroutine();
             break;
         }
     }
