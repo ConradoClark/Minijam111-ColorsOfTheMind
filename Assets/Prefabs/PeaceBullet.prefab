@@ -155,7 +155,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   LayerMask:
     serializedVersion: 2
-    m_Bits: 265
+    m_Bits: 264
   CheckNormals: 0
   NormalTarget: {x: 0, y: 0}
   IncreaseBySpeed: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveOnInitialization: 0
-  BulletDamage: 3
+  BulletDamage: 1
   BulletColor: {r: 0.27058825, g: 0.5882353, b: 0.6313726, a: 1}
   PaintMaterial: {fileID: 2100000, guid: 26595c70d1448c141813e7a925f8b29e, type: 2}
   SplatterEffect: {fileID: 11400000, guid: 61bb3729177d40a4f87774c2a3423904, type: 2}
@@ -197,3 +197,5 @@ MonoBehaviour:
   Gravity: {fileID: 11400000, guid: c2666471d97b1a141bb99f541792cff4, type: 2}
   InitialSpeed: {x: 0, y: 0}
   BulletSpeed: {x: 2, y: 2}
+  HitCooldownInMs: 100
+  CollisionDetector: {fileID: 4551940629233049818}

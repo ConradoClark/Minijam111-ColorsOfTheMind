@@ -25,8 +25,8 @@ public class Crosshair : BaseGameObject
 
     public float DirectionRelativeToCharacter => transform.position.x >= CharacterPhysicsObject.transform.position.x ? 1 : -1;
     private ClickDetectionMixin _clickDetection;
-    private CharacterAnimator _testChar;
-    private Dictionary<WeaponDefinition,BulletPool> _bulletPool;
+    private CharacterAnimator _character;
+    private Dictionary<WeaponDefinition, BulletPool> _bulletPool;
 
     private InputAction _switchWeaponAction;
     private int _currentWeaponIndex;
@@ -44,8 +44,8 @@ public class Crosshair : BaseGameObject
         {
             _bulletPool[def] = bulletPoolManager.GetEffect(def.BulletPrefab);
         }
-        
-        _testChar = FindObjectOfType<CharacterAnimator>();
+
+        _character = FindObjectOfType<CharacterAnimator>();
         _clickDetection = new ClickDetectionMixinBuilder(this, MousePosInput, MouseClickInput).Build();
     }
 
@@ -67,7 +67,7 @@ public class Crosshair : BaseGameObject
     {
         while (isActiveAndEnabled)
         {
-            if (_clickDetection.IsPressed(out var pos)&& _bulletPool[CurrentWeapon].TryGetFromPool(out var bullet))
+            if (_clickDetection.IsPressed(out var pos) && _bulletPool[CurrentWeapon].TryGetFromPool(out var bullet))
             {
                 if (AudioSource != null && CurrentWeapon.AudioClip != null)
                 {
@@ -75,8 +75,10 @@ public class Crosshair : BaseGameObject
                     AudioSource.PlayOneShot(CurrentWeapon.AudioClip);
                 }
 
-                bullet.Component.transform.position = new Vector3(_testChar.transform.position.x, _testChar.transform.position.y, 0);
-                bullet.InitialSpeed = ((Vector2)(pos - _testChar.transform.position)).normalized;
+                bullet.InitialSpeed = ((Vector2)(pos - _character.transform.position)).normalized;
+                bullet.Component.transform.position = new Vector3(_character.transform.position.x, _character.transform.position.y, 0)
+                                                      + (Vector3)bullet.InitialSpeed * 0.1f;
+
 
                 yield return TimeYields.WaitMilliseconds(GameTimer, CurrentWeapon.CooldownInMs);
             }

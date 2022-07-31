@@ -27,9 +27,12 @@ public class ShowText : BaseGameObject
             .SetTarget(1f)
             .Over(0.25f)
             .WithStep(0.05f)
+            .BreakIf(()=> TextComponent == null)
             .Easing(EasingYields.EasingFunction.Linear)
             .UsingTimer(GameTimer)
             .Build();
+
+        if (TextComponent == null) yield break;
 
         var remaining = DurationPoolable.DurationInSeconds - .5f;
 
@@ -41,6 +44,7 @@ public class ShowText : BaseGameObject
             .SetTarget(0.1f)
             .Over(0.25f)
             .WithStep(0.05f)
+            .BreakIf(() => TextComponent == null)
             .Easing(EasingYields.EasingFunction.Linear)
             .UsingTimer(GameTimer)
             .Build();

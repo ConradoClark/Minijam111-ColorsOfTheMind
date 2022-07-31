@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4551940629233049818}
   - component: {fileID: 693221331693359379}
   - component: {fileID: -7353522547913339031}
+  - component: {fileID: 7779919407571324476}
   m_Layer: 0
   m_Name: FocusBullet
   m_TagString: Untagged
@@ -109,6 +110,7 @@ MonoBehaviour:
     Triggered: 0
   CollisionDetectors:
   - {fileID: 4551940629233049818}
+  - {fileID: 7779919407571324476}
   AdditionalColliders: []
   CalculatedSpeed: {x: 0, y: 0}
 --- !u!61 &4551940629233049817
@@ -124,7 +126,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.002236981, y: 0}
+  m_Offset: {x: 0.00010949001, y: -0.00033520907}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -135,7 +137,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.077962376, y: 0.05}
+  m_Size: {x: 0.077962376, y: 0.019160584}
   m_EdgeRadius: 0
 --- !u!114 &4551940629233049818
 MonoBehaviour:
@@ -155,7 +157,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   LayerMask:
     serializedVersion: 2
-    m_Bits: 265
+    m_Bits: 256
   CheckNormals: 0
   NormalTarget: {x: 0, y: 0}
   IncreaseBySpeed: 0
@@ -198,4 +200,30 @@ MonoBehaviour:
   InitialSpeed: {x: 0, y: 0}
   BulletSpeed: {x: 3, y: 3}
   Self: {fileID: 11400000, guid: b5511f005ffab3649866e0c1a8a9a5d3, type: 2}
-  CollisionDetector: {fileID: 4551940629233049818}
+  CollisionDetector: {fileID: 7779919407571324476}
+--- !u!114 &7779919407571324476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551940629233049831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -946888057, guid: 294b4f80d9fdb094f8751ab2c17e4336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Collider: {fileID: 0}
+  TriggerIdentifier: {fileID: 11400000, guid: 19958d344d483a74487dfa4792c7cab6, type: 2}
+  Distance: 0.15
+  DistanceToTrigger: 0.05
+  UseSpeedAsDirection: 1
+  Direction: {x: 0, y: 0}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 264
+  CheckNormals: 0
+  NormalTarget: {x: 0, y: 0}
+  IncreaseBySpeed: 1
+  ShouldClampSpeed: 1
+  Offset: {x: 0, y: 0}

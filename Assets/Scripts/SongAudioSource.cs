@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Builders;
 using Licht.Unity.Objects;
@@ -22,8 +19,11 @@ public class SongAudioSource : BaseUIObject
         yield return new LerpBuilder(f => AudioSource.volume = f, () => AudioSource.volume)
             .SetTarget(0)
             .Over(1)
+            .BreakIf(() => AudioSource == null)
             .UsingTimer(UITimer)
             .Build();
+
+        if (AudioSource == null) yield break;
 
         AudioSource.clip = clip;
 
@@ -33,6 +33,7 @@ public class SongAudioSource : BaseUIObject
         yield return new LerpBuilder(f => AudioSource.volume = f, () => AudioSource.volume)
             .SetTarget(1)
             .Over(0.15f)
+            .BreakIf(() => AudioSource == null)
             .UsingTimer(UITimer)
             .Build();
     }

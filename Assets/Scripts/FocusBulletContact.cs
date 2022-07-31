@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Licht.Impl.Orchestration;
-using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
-using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
-using Licht.Unity.Pooling;
 using UnityEngine;
 
 public class FocusBulletContact : BulletContact
@@ -15,6 +11,7 @@ public class FocusBulletContact : BulletContact
     public ScriptPrefab Self;
     public LichtPhysicsCollisionDetector CollisionDetector;
     private BulletPool _bulletPool;
+    private Vector2 _bounceDirection;
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -50,7 +47,16 @@ public class FocusBulletContact : BulletContact
 
         while (isActiveAndEnabled)
         {
-            if (PhysicsObject.GetPhysicsTrigger(Contact))
+            var preDetection = CollisionDetector.Triggers.FirstOrDefault(t => t.Detected);
+            if (preDetection.Detected && preDetection.Hit.distance > 0)
+            {
+                _bounceDirection = InitialSpeed * new Vector2(
+                    preDetection.Hit.normal.x == 0 ? 1 : Math.Sign(preDetection.Hit.normal.x) == Math.Sign(InitialSpeed.x) ? 1 : -1,
+                    preDetection.Hit.normal.y == 0 ? 1 : Math.Sign(preDetection.Hit.normal.y) == Math.Sign(InitialSpeed.y) ? 1 : -1
+                );
+            }
+
+            if (PhysicsObject.GetPhysicsTrigger(Contact) && preDetection.TriggeredHit)
             {
                 if (!IsSubSpawn)
                 {
@@ -58,18 +64,17 @@ public class FocusBulletContact : BulletContact
                     {
                         bullet.IsSubSpawn = true;
 
-                        var colliderB = CollisionDetector.Triggers.FirstOrDefault().Collider;
+                        bullet.InitialSpeed = _bounceDirection;
 
-                        if (colliderB != null)
-                        {
-                            var dist = Physics2D.Distance(CollisionDetector.Collider, colliderB);
+                        // var dist = Physics2D.Distance(CollisionDetector.Collider, colliderB);
 
-                            bullet.InitialSpeed = InitialSpeed * new Vector2(
-                                Math.Sign(dist.normal.x) == Math.Sign(InitialSpeed.x) ? -1 : 1,
-                                Math.Sign(dist.normal.y) == Math.Sign(InitialSpeed.y) ? -1 : 1
-                            );
-                            bullet.transform.position = transform.position + (Vector3)bullet.InitialSpeed * 0.1f;
-                        }
+                        //Debug.Log("normal: " + hit.normal);
+
+                        //bullet.InitialSpeed = InitialSpeed * new Vector2(
+                        //     hit.normal.x == 0 ? 1 : Math.Sign(hit.normal.x) == Math.Sign(InitialSpeed.x) ? -1 : 1,
+                        //    hit.normal.y == 0 ? 1 : Math.Sign(hit.normal.y) == Math.Sign(InitialSpeed.y) ? 1 : -1
+                        //);
+                        bullet.transform.position = transform.position + (Vector3)bullet.InitialSpeed * 0.05f;
                     }
                 }
 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -972327683, guid: 294b4f80d9fdb094f8751ab2c17e4336, type: 3}
+  m_Name: Level2A-#1Text
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6460058492469511206, guid: f628be162cf791d4eba53347de2e82e2, type: 3}
+  DefaultPoolSize: 1
+  Type: 1

@@ -50,7 +50,8 @@ public class BulletContact : EffectPoolable
     {
         // resets gravity accel for object
         Physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
-        yield return TimeYields.WaitOneFrameX;
+        yield return TimeYields.WaitMilliseconds(GameTimer, 50);
+
         Physics.UnblockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
 
         while (isActiveAndEnabled)
